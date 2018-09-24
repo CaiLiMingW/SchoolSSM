@@ -1,7 +1,7 @@
 package org.clm.bean;
 
 import java.util.Date;
-
+//xxxxxx
 public class Comment {
     private Integer id;
 
