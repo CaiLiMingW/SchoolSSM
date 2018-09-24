@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+   <!-- &lt;!&ndash; 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 &ndash;&gt;
+    <property name="javaFileEncoding" value="UTF-8"/>
+    &lt;!&ndash; 这里的type里写的是你的实现类的类全路径 &ndash;&gt;
+    <commentGenerator type="com.fendo.generatorplus.MyCommentGenerator" />-->
+
+
+    <!-- 本地数据库驱动程序jar包的全路径 -->
+	<classPathEntry location="F:\mysql-connector-java-5.1.25.jar"/>
+
+	<context id="context" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true"/>
+			<property name="suppressDate" value="true"/>
+		</commentGenerator>
+
+		<!-- 数据库的相关配置 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://localhost:3306/schoolssm"
+						userId="root"
+						password="123"/>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false"/>
+		</javaTypeResolver>
+
+		<!-- 实体类生成的位置 -->
+		<javaModelGenerator targetPackage="org.clm.bean" targetProject="src/main/java">
+			<property name="enableSubPackages" value="false"/>
+			<property name="trimStrings" value="true"/>
+            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+		</javaModelGenerator>
+
+		<!-- *Mapper.xml 文件的位置 -->
+		<sqlMapGenerator targetPackage="org.clm.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+		<!-- Mapper 接口文件的位置 -->
+		<javaClientGenerator targetPackage="org.clm.dao" targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+
+		<!-- 相关表的配置 -->
+
+		<table  tableName="%"
+                enableSelectByExample="false"  selectByExampleQueryId="false"
+                enableUpdateByExample="false"  enableCountByExample="false"
+                enableDeleteByExample="false"
+                >
+        </table>
+        <!--<table  tableName="business" domainObjectName="Business"
+                enableCountByExample="false"  enableDeleteByExample="false"
+                enableSelectByExample="false" enableUpdateByExample="false"/>
+        <table  tableName="comment" domainObjectName="Comment"
+                enableCountByExample="false"  enableDeleteByExample="false"
+                enableSelectByExample="false" enableUpdateByExample="false"/>-->
+	</context>
+</generatorConfiguration>
